@@ -10,6 +10,7 @@ import {
   withRelayout,
 } from "./graph/builder";
 import { syncGraphAfterNodeUpdate } from "./graph/sync";
+import type { EmailMemory } from "./memory/types";
 import type {
   Integration,
   ImplementationPartner,
@@ -45,7 +46,14 @@ type StackyState = {
   deployments: SavedDeployment[];
   activeDeploymentId: string | null;
   graphRevision: number;
+  /** Server notes tied to this email (not an account) */
+  memoryNotes: string[];
+  memoryHydrated: boolean;
   setUserEmail: (email: string | null) => void;
+  /** Attach email locker (notes + past deployments) without replacing the current draft */
+  loadEmailLocker: (memory: EmailMemory) => void;
+  /** Fully restore a past blueprint from email memory */
+  hydrateFromMemory: (memory: EmailMemory) => void;
   setIdea: (idea: string) => void;
   updateContext: (partial: Partial<ProjectContext>) => void;
   addAttachment: (file: UploadedFile) => void;
@@ -115,6 +123,8 @@ export const useStackyStore = create<StackyState>()((set, get) => ({
       deployments: [],
       activeDeploymentId: null,
       graphRevision: 0,
+      memoryNotes: [],
+      memoryHydrated: false,
 
       setUserEmail: (email) =>
         set((state) => ({
@@ -125,6 +135,42 @@ export const useStackyStore = create<StackyState>()((set, get) => ({
                 email: state.outreachProfile.email || email,
               }
             : state.outreachProfile,
+        })),
+
+      loadEmailLocker: (memory) =>
+        set({
+          userEmail: memory.email,
+          memoryNotes: memory.notes ?? [],
+          deployments: memory.deployments ?? [],
+          outreachProfile: {
+            ...initialOutreachProfile,
+            ...memory.outreachProfile,
+            email: memory.email,
+          },
+          memoryHydrated: true,
+        }),
+
+      hydrateFromMemory: (memory) =>
+        set((state) => ({
+          userEmail: memory.email,
+          context: memory.context ?? initialContext,
+          messages: memory.messages ?? [],
+          nodes: memory.nodes ?? [],
+          integrations: memory.integrations ?? [],
+          implementationPartners: memory.implementationPartners ?? [],
+          deployments: memory.deployments ?? [],
+          activeDeploymentId: memory.activeDeploymentId,
+          outreachProfile: {
+            ...initialOutreachProfile,
+            ...memory.outreachProfile,
+            email: memory.email,
+          },
+          memoryNotes: memory.notes ?? [],
+          memoryHydrated: true,
+          selectedNodeId: null,
+          selectedEdgeId: null,
+          panelOpen: false,
+          graphRevision: state.graphRevision + 1,
         })),
 
       setIdea: (idea) =>
@@ -383,7 +429,7 @@ export const useStackyStore = create<StackyState>()((set, get) => ({
         })),
 
       resetProject: () =>
-        set({
+        set((state) => ({
           context: initialContext,
           messages: [],
           nodes: [],
@@ -394,7 +440,11 @@ export const useStackyStore = create<StackyState>()((set, get) => ({
           panelOpen: false,
           outreachOpen: false,
           activeDeploymentId: null,
-        }),
+          // Keep email + memory notes — same person, new project
+          userEmail: state.userEmail,
+          memoryNotes: state.memoryNotes,
+          memoryHydrated: state.memoryHydrated,
+        })),
 
       saveDeployment: () => {
         const { context, nodes, integrations, implementationPartners, messages, activeDeploymentId, deployments } =

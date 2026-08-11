@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ClearLegacyStorage } from "@/components/access/ClearLegacyStorage";
+import { MemorySync } from "@/components/access/MemorySync";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased`}
       >
         <ClearLegacyStorage />
+        <MemorySync />
         {children}
       </body>
     </html>

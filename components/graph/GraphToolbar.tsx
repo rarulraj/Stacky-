@@ -10,6 +10,7 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
+import { DeploymentsPanel } from "@/components/deployments/DeploymentsPanel";
 import { ExportMenu } from "@/components/graph/ExportMenu";
 import { GraphHowToUse } from "@/components/graph/GraphHowToUse";
 import { StackyMascot } from "@/components/brand/StackyMascot";
@@ -145,6 +146,7 @@ export function GraphToolbar() {
             </Button>
           )}
           <ExportMenu />
+          <DeploymentsPanel />
           <GraphHowToUse />
           <Button variant="ghost" size="sm" onClick={handleNewProject}>
             <RotateCcw className="size-3.5" />

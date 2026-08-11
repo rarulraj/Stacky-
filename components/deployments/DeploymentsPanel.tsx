@@ -34,7 +34,7 @@ export function DeploymentsPanel() {
         onClick={() => setOpen(!open)}
       >
         <History className="size-3.5" />
-        Deployments
+        Memory
         <span className="rounded-full bg-white/10 px-1.5 text-[10px]">
           {deployments.length}
         </span>
@@ -46,7 +46,7 @@ export function DeploymentsPanel() {
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
           <div className="absolute top-full right-0 z-50 mt-2 w-80 rounded-xl border border-white/10 bg-background/95 p-2 shadow-xl backdrop-blur-xl">
             <p className="px-2 py-1.5 text-[10px] font-medium tracking-wide text-muted-foreground uppercase">
-              Past deployments
+              Saved to your email
             </p>
             <div className="max-h-72 space-y-1 overflow-y-auto">
               {deployments.map((d) => (

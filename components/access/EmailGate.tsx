@@ -10,6 +10,8 @@ import {
   isValidEmail,
   setStoredUserEmail,
 } from "@/lib/access/email";
+import { fetchEmailMemory } from "@/lib/memory/client";
+import { emptyMemory } from "@/lib/memory/types";
 import { useStackyStore } from "@/lib/store";
 
 type EmailGateProps = {
@@ -28,9 +30,11 @@ export function EmailGate({
   historian,
 }: EmailGateProps) {
   const setUserEmail = useStackyStore((s) => s.setUserEmail);
+  const loadEmailLocker = useStackyStore((s) => s.loadEmailLocker);
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [memorySummary, setMemorySummary] = useState<string | null>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -47,6 +51,7 @@ export function EmailGate({
     }
     setSubmitting(true);
     setError(null);
+    setMemorySummary(null);
     const normalized = email.trim().toLowerCase();
 
     try {
@@ -61,7 +66,22 @@ export function EmailGate({
         }),
       });
     } catch {
-      // Still let them through — lead capture is best-effort
+      // best-effort
+    }
+
+    try {
+      const { memory, hasBlueprint } = await fetchEmailMemory(normalized);
+      loadEmailLocker(memory);
+      if (hasBlueprint) {
+        const count = memory.deployments?.length || (memory.nodes.length ? 1 : 0);
+        setMemorySummary(
+          count > 0
+            ? `${count} past blueprint${count === 1 ? "" : "s"} remembered for this email`
+            : null
+        );
+      }
+    } catch {
+      loadEmailLocker(emptyMemory(normalized));
     }
 
     setStoredUserEmail(normalized);
@@ -78,7 +98,7 @@ export function EmailGate({
           <div>
             <h2 className="text-lg font-semibold">Start planning</h2>
             <p className="text-xs text-muted-foreground">
-              No account needed — just your email to continue
+              No account — work is remembered by email
             </p>
           </div>
         </div>
@@ -101,9 +121,12 @@ export function EmailGate({
           />
         </div>
         {error && <p className="mb-3 text-xs text-red-400">{error}</p>}
+        {memorySummary && (
+          <p className="mb-3 text-xs text-emerald-400/90">{memorySummary}</p>
+        )}
         <p className="mb-4 text-[11px] leading-relaxed text-muted-foreground">
-          We use this to share your blueprint link context and follow up — no
-          password, no signup flow.
+          Blueprints and notes save to this email on the server — not in your
+          browser, and not as a username/password account.
         </p>
 
         <div className="flex gap-2">
@@ -117,7 +140,7 @@ export function EmailGate({
             disabled={submitting}
             onClick={() => void submit()}
           >
-            {submitting ? "Continuing…" : "Continue to Stacky"}
+            {submitting ? "Loading memory…" : "Continue to Stacky"}
           </Button>
         </div>
       </div>
@@ -125,7 +148,6 @@ export function EmailGate({
   );
 }
 
-/** Session email only (memory) — never browser storage */
 export function ensureUserEmail(): string | null {
   return (
     getStoredUserEmail() ?? useStackyStore.getState().userEmail ?? null
