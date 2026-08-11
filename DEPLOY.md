@@ -1,6 +1,6 @@
 # Deploy Stacky to Vercel
 
-No user accounts — visitors only enter an email. Your OpenAI key lives on the server so anyone can hop on and generate graphs.
+No user accounts. visitors only enter an email. Your OpenAI key lives on the server so anyone can hop on and generate graphs.
 
 ## 1. Push the repo
 
@@ -25,12 +25,12 @@ Repo: https://github.com/rarulraj/Stacky-.git
 
 | Name | Required | Value |
 |------|----------|--------|
-| `OPENAI_API_KEY` | **Yes** | Your OpenAI key — powers questions, graphs, expand |
+| `OPENAI_API_KEY` | **Yes** | Your OpenAI key. powers questions, graphs, expand |
 | `OPENAI_MODEL` | No | `gpt-4o-mini` (default) |
 | `OPENAI_RESEARCH_MODEL` | No | `gpt-4o` (web research for vendors) |
 | `OPENAI_WEB_SEARCH` | No | `true` |
-| `NEXT_PUBLIC_SHOW_API_KEY_UI` | Recommended | `false` — hide per-user API key UI in prod |
-| `STACKY_OWNER_EMAIL` | Recommended | Your email — receive each lead’s address |
+| `NEXT_PUBLIC_SHOW_API_KEY_UI` | Recommended | `false`. hide per-user API key UI in prod |
+| `STACKY_OWNER_EMAIL` | Recommended | Your email. receive each lead’s address |
 | `STACKY_LEAD_WEBHOOK_URL` | Optional | Slack/Zapier/Make webhook for leads |
 | `RESEND_API_KEY` | Optional | Needed to email leads to `STACKY_OWNER_EMAIL` |
 | `RESEND_FROM_EMAIL` | Optional | `Stacky <outreach@yourdomain.com>` |

@@ -191,7 +191,7 @@ export function Hero() {
                   onSelect={(idea, historianId) => submit(idea, historianId)}
                   caption={
                     isArchitecture
-                      ? "Start from a historian pattern: you'll get zones, relays, and clients you can edit by hand."
+                      ? "Start from a historian pattern. You'll get zones, relays, and clients you can edit by hand."
                       : undefined
                   }
                 />

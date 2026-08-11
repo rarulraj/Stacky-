@@ -11,7 +11,7 @@ Without a key, Stacky runs in **template mode** with generic placeholder content
 
 ---
 
-## Option 1 — In the app (quickest)
+## Option 1. In the app (quickest)
 
 1. Open Stacky at [http://localhost:3000](http://localhost:3000)
 2. Click **API Key** in the top-right nav
@@ -24,7 +24,7 @@ Get a key: [https://platform.openai.com/api-keys](https://platform.openai.com/ap
 
 ---
 
-## Option 2 — Server config (recommended for dev)
+## Option 2. Server config (recommended for dev)
 
 1. In the project root (`~/stacky`), create a file named `.env.local`:
 
@@ -53,7 +53,7 @@ npm run dev
 On the **graph page**:
 
 - **Drag** any node to reposition it
-- Bottom-left **Add / Delete / Layout** bar — add a child under the selected node, delete a subtree, or auto-layout
+- Bottom-left **Add / Delete / Layout** bar. add a child under the selected node, delete a subtree, or auto-layout
 - Open a node → **pencil** icon to edit labels, overview, tech picks, cost, etc.
 - Side panel also has **Add child** and **Delete**
 
@@ -69,11 +69,11 @@ Toolbar → **Download**:
 | **HTML report** | Shareable blueprint page |
 | **Markdown report** | Architecture tree + vendor contact list |
 
-The **Markdown report** is your outreach list — every vendor with contact points.
+The **Markdown report** is your outreach list. every vendor with contact points.
 
 ## Deploy to Vercel
 
-See [VERCEL.md](./VERCEL.md) — set `OPENAI_API_KEY` on the server so visitors need only an email.
+See [VERCEL.md](./VERCEL.md). set `OPENAI_API_KEY` on the server so visitors need only an email.
 
 ---
 

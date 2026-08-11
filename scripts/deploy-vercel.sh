@@ -4,7 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 if [[ ! -f .env.local ]]; then
-  echo "Missing .env.local — copy .env.example and add OPENAI_API_KEY first."
+  echo "Missing .env.local. copy .env.example and add OPENAI_API_KEY first."
   exit 1
 fi
 

@@ -1,15 +1,15 @@
 # Stacky
 
-AI systems architect for industrial historians and OT platforms — living architecture graphs, no account required.
+AI systems architect for industrial historians and OT platforms. living architecture graphs, no account required.
 
 ## What it does now
 
-1. **Intent gate** — architectural diagram (zones/firewalls/ports) **or** commercial quote (products + outreach)
-2. **Email gate** — visitors enter a work email only (no signup)
-3. **Historian planning** — TDengine, AVEVA PI, Canary Labs, Ignition, InfluxDB (or free-form natural language)
-4. **Intake** — guided Q&A or natural language
-5. **Architecture graph** — high-fidelity editable blueprint: drag nodes, connect edges, edit ports, add zones/firewalls, expand, rebuild, export
-6. **Leads** — your inbox / webhook gets their email when they start
+1. **Intent gate**. architectural diagram (zones/firewalls/ports) **or** commercial quote (products + outreach)
+2. **Email gate**. visitors enter a work email only (no signup)
+3. **Historian planning**. TDengine, AVEVA PI, Canary Labs, Ignition, InfluxDB (or free-form natural language)
+4. **Intake**. guided Q&A or natural language
+5. **Architecture graph**. high-fidelity editable blueprint: drag nodes, connect edges, edit ports, add zones/firewalls, expand, rebuild, export
+6. **Leads**. your inbox / webhook gets their email when they start
 
 ## Stack
 
@@ -36,7 +36,7 @@ See **[DEPLOY.md](./DEPLOY.md)** for the full path:
 
 - Import GitHub repo → set `OPENAI_API_KEY` + `STACKY_OWNER_EMAIL`
 - Set `NEXT_PUBLIC_SHOW_API_KEY_UI=false`
-- Redeploy — share the Vercel URL; users only enter email
+- Redeploy. share the Vercel URL; users only enter email
 
 ## Project layout
 

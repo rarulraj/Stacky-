@@ -1,6 +1,6 @@
 # Vercel env vars
 
-No in-app API key UI — paste these in **Vercel → Project → Settings → Environment Variables**, then redeploy.
+No in-app API key UI. paste these in **Vercel → Project → Settings → Environment Variables**, then redeploy.
 
 ## Required
 
