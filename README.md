@@ -2,7 +2,7 @@
 
 AI systems architect for industrial historians and OT platforms — living architecture graphs, no account required.
 
-## What it does
+## What it does now
 
 1. **Intent gate** — architectural diagram (zones/firewalls/ports) **or** commercial quote (products + outreach)
 2. **Email gate** — visitors enter a work email only (no signup)
