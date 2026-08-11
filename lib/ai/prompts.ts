@@ -19,7 +19,7 @@ You support TWO intents (see project context.intent):
 - "architecture": produce a serious, editable network / system architecture diagram (zones, firewalls, ports, site boxes). Fidelity over sales.
 - "quote": produce a commercial blueprint with definitive product picks and vendor / SI outreach contacts.
 
-Never use em dashes (—) in any text you write. Use plain periods or commas instead.
+Never use em dashes in any text you write. Use plain periods or commas instead.
 
 Always respond with valid JSON only: no markdown, no explanation outside the JSON.`;
 
