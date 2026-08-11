@@ -1,43 +1,36 @@
-# Deploy Stacky to Vercel
+# Deploy Stacky to Vercel (instant)
 
-No user accounts — visitors only enter an email. Put your OpenAI key on the server so anyone can hop on and generate graphs.
+Repo is live: https://github.com/rarulraj/Stacky-
 
-## 1. Push the repo
+## Fastest path (one click)
+
+**[Deploy to Vercel →](https://vercel.com/new/clone?repository-url=https://github.com/rarulraj/Stacky-&project-name=stacky&env=OPENAI_API_KEY,OPENAI_MODEL,STACKY_OWNER_EMAIL,NEXT_PUBLIC_SHOW_API_KEY_UI&envDescription=Server%20OpenAI%20key%20+%20your%20email%20for%20leads.%20Set%20NEXT_PUBLIC_SHOW_API_KEY_UI%20to%20false.&envLink=https://github.com/rarulraj/Stacky-/blob/main/.env.example)**
+
+When prompted, set:
+
+| Variable | Value |
+|----------|--------|
+| `OPENAI_API_KEY` | your `sk-...` key (same as local `.env.local`) |
+| `OPENAI_MODEL` | `gpt-4o-mini` |
+| `STACKY_OWNER_EMAIL` | `arun@tdengine.com` (or your inbox) |
+| `NEXT_PUBLIC_SHOW_API_KEY_UI` | `false` |
+
+Deploy → share the `*.vercel.app` URL. Visitors only enter email.
+
+## CLI (after `npx vercel login`)
 
 ```bash
 cd ~/stacky
-git push -u origin main
+npx vercel login          # once — opens browser
+npx vercel link --yes
+npx vercel env add OPENAI_API_KEY production
+npx vercel env add STACKY_OWNER_EMAIL production
+npx vercel env add NEXT_PUBLIC_SHOW_API_KEY_UI production   # false
+npx vercel --prod --yes
+# or:
+npm run deploy
 ```
 
-## 2. Import on Vercel
+## Local already configured
 
-1. Go to [https://vercel.com/new](https://vercel.com/new)
-2. Import the Stacky GitHub repo
-3. Framework preset: **Next.js** (auto-detected)
-4. Root directory: `.` (repo root)
-
-## 3. Environment variables
-
-In **Project → Settings → Environment Variables**, add:
-
-| Name | Value | Environments |
-|------|--------|--------------|
-| `OPENAI_API_KEY` | `sk-...` | Production, Preview |
-| `OPENAI_MODEL` | `gpt-4o-mini` (or `gpt-4o`) | Production, Preview |
-| `STACKY_OWNER_EMAIL` | your email — lead notifications via Resend | Production |
-| `RESEND_API_KEY` | optional — required to email leads to you | Production |
-| `STACKY_LEAD_WEBHOOK_URL` | optional Slack/Zapier webhook for leads | Production |
-| `NEXT_PUBLIC_SHOW_API_KEY_UI` | `false` in production (server key only) | Production |
-
-Redeploy after saving env vars.
-
-## 4. Share the URL
-
-Give your boss / demos the Vercel URL (e.g. `https://stacky.vercel.app`).
-
-Visitors:
-1. Enter email (no signup)
-2. Pick a historian or describe the stack in natural language
-3. Generate / expand the architecture
-4. **Manually edit** the graph (drag, add, delete, pencil)
-5. **Download** PNG, SVG, JSON, HTML, or Markdown report
+`.env.local` is set on this machine (not committed). Dev server: http://localhost:3000

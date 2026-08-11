@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy": "bash scripts/deploy-vercel.sh",
+    "vercel:prod": "npx --yes vercel@latest --prod --yes"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
