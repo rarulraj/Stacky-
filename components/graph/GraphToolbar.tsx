@@ -11,6 +11,7 @@ import {
   Users,
 } from "lucide-react";
 import { ExportMenu } from "@/components/graph/ExportMenu";
+import { GraphHowToUse } from "@/components/graph/GraphHowToUse";
 import { StackyMascot } from "@/components/brand/StackyMascot";
 import { Button } from "@/components/ui/button";
 import { fetchGenerateGraph } from "@/lib/ai/client";
@@ -144,6 +145,7 @@ export function GraphToolbar() {
             </Button>
           )}
           <ExportMenu />
+          <GraphHowToUse />
           <Button variant="ghost" size="sm" onClick={handleNewProject}>
             <RotateCcw className="size-3.5" />
             <span className="hidden sm:inline">New</span>

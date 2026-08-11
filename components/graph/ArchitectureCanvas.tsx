@@ -19,7 +19,6 @@ import {
 import "@xyflow/react/dist/style.css";
 import { StackyFlowNode } from "./StackyFlowNode";
 import { GraphEditBar } from "./GraphEditBar";
-import { GraphLegend } from "./GraphLegend";
 import { EdgeEditPopover } from "./EdgeEditPopover";
 import { getChildCount, getVisibleNodes, layoutGraph } from "@/lib/layout-graph";
 import { getVisibleIntegrations } from "@/lib/mock/integrations";
@@ -260,26 +259,13 @@ function ArchitectureCanvasInner() {
 
   return (
     <div className="h-full w-full">
-      <GraphLegend />
       <GraphEditBar />
       <EdgeEditPopover />
-      <div className="absolute top-4 right-4 z-10 space-y-2">
-        <div className="rounded-xl border border-white/8 bg-[#1c1917]/90 px-3 py-2 backdrop-blur-md">
-          <p className="text-[10px] text-muted-foreground">
-            Showing {visibleNodes.length} of {nodes.length} nodes
-          </p>
-          <p className="mt-0.5 text-[10px] text-muted-foreground/70">
-            {isArchitecture
-              ? "Drag · drag handle→handle to connect · click edge for ports · pencil to edit"
-              : "Drag · edit bar · pencil · Download in toolbar"}
-          </p>
+      {expandError && (
+        <div className="absolute top-4 right-4 z-10 max-w-xs rounded-xl border border-red-500/30 bg-red-950/80 px-3 py-2 text-[11px] text-red-200">
+          {expandError}
         </div>
-        {expandError && (
-          <div className="max-w-xs rounded-xl border border-red-500/30 bg-red-950/80 px-3 py-2 text-[11px] text-red-200">
-            {expandError}
-          </div>
-        )}
-      </div>
+      )}
       <ReactFlow
         key={graphRevision}
         nodes={rfNodes}
