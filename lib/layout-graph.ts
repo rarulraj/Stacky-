@@ -110,7 +110,7 @@ function layoutTree(
 
 /**
  * Left-to-right security zones (Control → DMZ → Corporate), components stacked
- * inside each zone column — closer to classic OT architecture drawings.
+ * inside each zone column. closer to classic OT architecture drawings.
  */
 export function layoutArchitectureZones(nodes: StackyNode[]): StackyNode[] {
   const visible = getVisibleNodes(nodes);
@@ -164,7 +164,7 @@ export function layoutArchitectureZones(nodes: StackyNode[]): StackyNode[] {
     });
   });
 
-  // Orphans (visible but not placed) — park to the right
+  // Orphans (visible but not placed). park to the right
   let orphanY = TOP;
   const orphanX = zones.length * COL_W + 40;
   visible.forEach((n) => {

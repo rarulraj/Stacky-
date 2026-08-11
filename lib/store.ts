@@ -31,7 +31,7 @@ const initialOutreachProfile: OutreachProfile = {
 };
 
 type StackyState = {
-  /** Email-only access — no accounts */
+  /** Email-only access. no accounts */
   userEmail: string | null;
   context: ProjectContext;
   messages: IntakeMessage[];
@@ -440,7 +440,7 @@ export const useStackyStore = create<StackyState>()((set, get) => ({
           panelOpen: false,
           outreachOpen: false,
           activeDeploymentId: null,
-          // Keep email + memory notes — same person, new project
+          // Keep email + memory notes. same person, new project
           userEmail: state.userEmail,
           memoryNotes: state.memoryNotes,
           memoryHydrated: state.memoryHydrated,

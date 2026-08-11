@@ -24,7 +24,7 @@ export async function POST(req: Request) {
   try {
     const existingChildren = existingNodes.filter((n) => n.parentId === node.id);
 
-    // Children already generated — reveal them without re-calling the LLM
+    // Children already generated: reveal them without re-calling the LLM
     if (existingChildren.length > 0) {
       const updated = existingNodes.map((n) =>
         n.id === node.id ? { ...n, expanded: true, collapsed: false } : n

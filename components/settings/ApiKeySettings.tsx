@@ -146,7 +146,7 @@ function ApiKeyDialogContent({
             </Badge>
           ) : (
             <Badge variant="outline" className="text-muted-foreground">
-              Not configured — template mode
+              Not configured: template mode
             </Badge>
           )}
         </div>
@@ -264,7 +264,7 @@ export function ApiKeyDevBanner({ embedded = false }: { embedded?: boolean }) {
           </div>
           <div className="min-w-0">
             <p className="text-sm font-medium text-orange-100">
-              Enable AI mode — add your OpenAI API key
+              Enable AI mode: add your OpenAI API key
             </p>
             <p className="mt-0.5 text-xs text-muted-foreground">
               Dev preview only. Without a key, Stacky uses templates instead of

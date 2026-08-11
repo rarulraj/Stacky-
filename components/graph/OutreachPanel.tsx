@@ -173,7 +173,7 @@ export function OutreachPanel() {
     setBatchStatus(
       sent > 0
         ? `Stacky sent ${sent} email${sent !== 1 ? "s" : ""} via Resend.`
-        : `Drafted ${withEmail.length} emails — opened via your mail app or add RESEND_API_KEY for auto-send.`
+        : `Drafted ${withEmail.length} emails: opened via your mail app or add RESEND_API_KEY for auto-send.`
     );
     setBatchLoading(false);
   };
@@ -214,7 +214,7 @@ export function OutreachPanel() {
                   </h3>
                 </div>
                 <p className="mb-3 text-[11px] text-muted-foreground">
-                  Systems integrators and consultants who deploy stacks like yours — reach out for
+                  Systems integrators and consultants who deploy stacks like yours: reach out for
                   implementation quotes.
                 </p>
                 <div className="space-y-3">

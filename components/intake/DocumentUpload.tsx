@@ -142,7 +142,7 @@ export function DocumentUpload({
               Drop files here or click to upload
             </p>
             <p className="mt-1 text-xs text-muted-foreground">
-              PDF, Markdown (.md), TXT, PNG, JPG, WebP — up to 10MB
+              PDF, Markdown (.md), TXT, PNG, JPG, WebP: up to 10MB
             </p>
             <input
               ref={inputRef}

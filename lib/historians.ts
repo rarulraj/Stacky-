@@ -13,7 +13,7 @@ export const HISTORIANS: HistorianOption[] = [
     id: "tdengine",
     name: "TDengine",
     vendor: "TDengine",
-    blurb: "High-ingest industrial TSDB — multi-plant, IoT, and AI analytics.",
+    blurb: "High-ingest industrial TSDB: multi-plant, IoT, and AI analytics.",
     idea:
       "Plan a TDengine Enterprise historian deployment across multiple plants with OT ingest, retention tiers, Grafana/SQL analytics, and alerting.",
   },

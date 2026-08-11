@@ -61,7 +61,7 @@ export async function POST(req: Request) {
           to: [ownerEmail],
           subject: `Stacky lead: ${email}`,
           text: [
-            `New Stacky user (no account — email only)`,
+            `New Stacky user (no account: email only)`,
             ``,
             `Email: ${email}`,
             payload.historian ? `Historian focus: ${payload.historian}` : null,

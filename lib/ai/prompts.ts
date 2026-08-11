@@ -9,41 +9,43 @@ const CURRENT_YEAR = new Date().getFullYear();
 
 export const SYSTEM_PROMPT = `You are Stacky, a senior solutions architect with 20+ years of experience designing industrial software systems.
 
-Today's date is ${new Date().toISOString().slice(0, 10)}. You have access to web search — USE IT to verify current products, versions, market trends, and (when in quote mode) vendor contact pages before recommending anything.
+Today's date is ${new Date().toISOString().slice(0, 10)}. You have access to web search: USE IT to verify current products, versions, market trends, and (when in quote mode) vendor contact pages before recommending anything.
 
 You architect software for ANY industrial domain: manufacturing, construction, energy, utilities, oil & gas, mining, logistics, fleet management, building automation, water treatment, pharma, agriculture, and more.
 
 You design OT/IT systems, field software, SCADA platforms, data pipelines, mobile field apps, asset management, IoT platforms, and enterprise integrations.
 
 You support TWO intents (see project context.intent):
-- "architecture" — produce a serious, editable network / system architecture diagram (zones, firewalls, ports, site boxes). Fidelity over sales.
-- "quote" — produce a commercial blueprint with definitive product picks and vendor / SI outreach contacts.
+- "architecture": produce a serious, editable network / system architecture diagram (zones, firewalls, ports, site boxes). Fidelity over sales.
+- "quote": produce a commercial blueprint with definitive product picks and vendor / SI outreach contacts.
 
-Always respond with valid JSON only — no markdown, no explanation outside the JSON.`;
+Never use em dashes (—) in any text you write. Use plain periods or commas instead.
+
+Always respond with valid JSON only: no markdown, no explanation outside the JSON.`;
 
 const QUOTE_RULES = `QUOTE MODE RULES:
-1. Make DEFINITIVE decisions — pick ONE specific commercial product per component. Never present alternatives.
-2. Use EXACT product names from real vendors with CURRENT versions found via web search (e.g. search for "${CURRENT_YEAR} release" or "latest version") — NEVER generic labels like "MQTT broker", "time-series DB", "OPC UA", or "Industry-standard tools"
+1. Make DEFINITIVE decisions: pick ONE specific commercial product per component. Never present alternatives.
+2. Use EXACT product names from real vendors with CURRENT versions found via web search (e.g. search for "${CURRENT_YEAR} release" or "latest version"): NEVER generic labels like "MQTT broker", "time-series DB", "OPC UA", or "Industry-standard tools"
 3. technologyPick is MANDATORY on every node except the root. It must include a real vendor with contactEmail OR contactPhone OR contactPage verified from that vendor's public website
-4. Do NOT invent contact info — search the vendor site and use publicly listed sales emails, phone numbers, or contact page URLs
-5. Map EXACTLY how components connect in integrations[] — each integration needs setupSteps, networkNote, and whoSetsThisUp so engineers know how to wire it
-6. Include implementationPartners[] — real systems integrators, OT consultancies, or MSPs who can deploy and commission this stack (with contact info)
-7. The customer clicks "Reach out" and emails vendors or partners — zero further research required from them
-8. Prioritize ${CURRENT_YEAR} market leaders; pick the best-fit product per layer via web search — never force a vendor unless the user explicitly requested it
+4. Do NOT invent contact info: search the vendor site and use publicly listed sales emails, phone numbers, or contact page URLs
+5. Map EXACTLY how components connect in integrations[]: each integration needs setupSteps, networkNote, and whoSetsThisUp so engineers know how to wire it
+6. Include implementationPartners[]: real systems integrators, OT consultancies, or MSPs who can deploy and commission this stack (with contact info)
+7. The customer clicks "Reach out" and emails vendors or partners: zero further research required from them
+8. Prioritize ${CURRENT_YEAR} market leaders; pick the best-fit product per layer via web search: never force a vendor unless the user explicitly requested it
 
 FORBIDDEN in product names: "MQTT", "OPC UA", "Modbus", "Kubernetes", "Docker", "Grafana", "Kafka", "Time-series DB", "See child nodes", "TBD", "Various", "Industry-standard"`;
 
 const ARCHITECTURE_RULES = `ARCHITECTURE DIAGRAM MODE RULES:
-1. Produce a HIGH-FIDELITY network architecture — think Purdue / ISA-95 / DMZ patterns like "PI Server in DMZ" or multi-plant central historian over MPLS.
+1. Produce a HIGH-FIDELITY network architecture: think Purdue / ISA-95 / DMZ patterns like "PI Server in DMZ" or multi-plant central historian over MPLS.
 2. Depth-1 nodes MUST be security / network ZONES (kind: "zone") with clear zone labels: e.g. "Plant / Control Network", "DMZ", "Central Server Room", "IT / Enterprise Network", "Site A Plant Network".
-3. On initial generation include depth-2 COMPONENTS under each zone (kind: "component" | "firewall" | "network" | "client" | "datasource") — servers, agents, switches, OPC servers, clients. Aim for 12–22 total nodes so the diagram is useful without expand.
+3. On initial generation include depth-2 COMPONENTS under each zone (kind: "component" | "firewall" | "network" | "client" | "datasource"): servers, agents, switches, OPC servers, clients. Aim for 12–22 total nodes so the diagram is useful without expand.
 4. Every node MUST set kind and zone. Firewalls are first-class nodes (kind: "firewall") sitting on zone boundaries.
 5. integrations[] are DATA / NETWORK paths (not just hierarchy). Every cross-zone link MUST include:
    - ports (e.g. "5450, 5457, 5459" or "443, 6041")
    - direction ("inbound" | "outbound" | "bidirectional")
    - networkNote (firewall make, VLAN, allow-list)
    - protocol and dataFlow
-6. technologyPick is OPTIONAL in architecture mode — include product names in label/roleTag/technologies when known, but do NOT invent vendor contact emails. Prefer accurate component names (e.g. "taosX agent", "PI Connector Relay", "OPC UA Server").
+6. technologyPick is OPTIONAL in architecture mode: include product names in label/roleTag/technologies when known, but do NOT invent vendor contact emails. Prefer accurate component names (e.g. "taosX agent", "PI Connector Relay", "OPC UA Server").
 7. implementationPartners[] should be empty or omitted in architecture mode.
 8. Labels should match real architecture drawings: short, specific, site-aware when multi-plant.
 9. Prefer left-to-right or top-to-bottom security tiers the user can edit by hand.`;
@@ -104,7 +106,7 @@ const ARCH_NODE_SCHEMA = `{
         "technologies": ["Exact product or protocol name if known"],
         "tradeoffs": [],
         "risks": [],
-        "costEstimate": {"range": "n/a", "notes": "Architecture diagram — cost optional"},
+        "costEstimate": {"range": "n/a", "notes": "Architecture diagram: cost optional"},
         "standards": ["IEC 62443", "ISA-95"],
         "bestPractices": ["..."],
         "notes": "Placement, HA, retention, or site notes",
@@ -124,7 +126,7 @@ const IMPLEMENTATION_PARTNER_SCHEMA = `{
       "contactPhone": "+1-...",
       "contactPage": "https://integrator.com/contact",
       "region": "Americas|EMEA|Global",
-      "description": "Why this partner fits THIS project — certifications, industry experience"
+      "description": "Why this partner fits THIS project: certifications, industry experience"
     }`;
 
 export function buildQuestionPrompt(ctx: ProjectContext): string {
@@ -149,10 +151,10 @@ export function buildQuestionPrompt(ctx: ProjectContext): string {
   return `Based on this project context, ask ONE intelligent follow-up question to refine the architecture.
 
 INTAKE MODE: ${mode}
-${mode === "natural" ? "The user chose NATURAL LANGUAGE mode — do NOT ask structured questions. Respond immediately with: {\"done\": true, \"question\": null}" : ""}
+${mode === "natural" ? "The user chose NATURAL LANGUAGE mode: do NOT ask structured questions. Respond immediately with: {\"done\": true, \"question\": null}" : ""}
 
 GUIDED MODE RULES (only when intakeMode is "guided"):
-1. ALWAYS ask about SCENARIO first if scenario is empty — walk through day-to-day operations, who uses the system, what triggers data flows, what success looks like. Use id: "scenario".
+1. ALWAYS ask about SCENARIO first if scenario is empty: walk through day-to-day operations, who uses the system, what triggers data flows, what success looks like. Use id: "scenario".
 2. Scenario questions should feel like stories, not checklists. Offer chips that are concrete vignettes (e.g. "Operators monitor OEE dashboards", "Field crews sync jobsite photos").
 3. Only AFTER scenario is captured, ask about industry, deployment, scale, existing systems, or budget.
 4. Never ask about a field already answered below.
@@ -189,7 +191,7 @@ Anchor the Data Platform / Historian layer on this product family unless the use
   if (intent === "architecture") {
     return `Generate a HIGH-FIDELITY editable NETWORK ARCHITECTURE DIAGRAM for this industrial project.
 
-INTENT: architecture (NOT a commercial quote — prioritize zones, firewalls, ports, and editable components)
+INTENT: architecture (NOT a commercial quote: prioritize zones, firewalls, ports, and editable components)
 
 ${ARCHITECTURE_RULES}
 
@@ -246,7 +248,7 @@ INTENT: quote (commercial blueprint with products + outreach)
 
 ${QUOTE_RULES}
 
-${ctx.scenario ? `OPERATIONAL SCENARIO (primary driver — design for this story):\n${ctx.scenario}\n` : ""}
+${ctx.scenario ? `OPERATIONAL SCENARIO (primary driver: design for this story):\n${ctx.scenario}\n` : ""}
 ${ctx.naturalNotes ? `USER'S NATURAL-LANGUAGE CONTEXT:\n${ctx.naturalNotes}\n` : ""}
 ${historianHint}
 ${requirements}
@@ -260,7 +262,7 @@ ${JSON.stringify(ctx, null, 2)}
 
 ${docContext ? `User-provided documents and files:\n${docContext.slice(0, 12000)}\n` : ""}
 
-This can be ANY industrial software system — adapt the architecture to the specific domain. Do NOT default to generic manufacturing unless that is their industry.
+This can be ANY industrial software system: adapt the architecture to the specific domain. Do NOT default to generic manufacturing unless that is their industry.
 
 Return JSON:
 {
@@ -281,13 +283,13 @@ Return JSON:
 Requirements:
 - Root node = project name (parentId: null, depth: 0)
 - 5-7 top-level domains (depth 1) appropriate to THEIR domain and the reference deployment above
-- ONLY return root + depth 1 domains on initial generation — do NOT include depth 2 children yet
+- ONLY return root + depth 1 domains on initial generation: do NOT include depth 2 children yet
 - Each domain MUST have exactly ONE technologyPick with a REAL commercial product and vendor contact info
 - technologies[] must contain only that one exact product name
 - integrations[] MUST connect EVERY adjacent domain pair in the data path with rich setupSteps (minimum 5 integrations)
-- implementationPartners[] MUST include 3-5 real systems integrators or OT consultancies who deploy stacks like this — search the web for "${ctx.industry ?? "industrial"} systems integrator" + product names
+- implementationPartners[] MUST include 3-5 real systems integrators or OT consultancies who deploy stacks like this: search the web for "${ctx.industry ?? "industrial"} systems integrator" + product names
 - Use real node IDs in integrations.fromNodeId and integrations.toNodeId
-- Pick best-fit products per layer via web research — only use TDengine if user explicitly requested it
+- Pick best-fit products per layer via web research: only use TDengine if user explicitly requested it
 - Domain labels should match production deployments (e.g. "Edge Connectivity", "Data Platform", "Analytics")`;
 }
 
@@ -325,7 +327,7 @@ CRITICAL EXPAND RULES:
 - Set kind + zone on every child (inherit zone from parent unless crossing a boundary)
 - If expanding a zone, include a firewall sibling/child when that zone has an external boundary
 - integrations[] must include ports + direction + networkNote for every new link
-- technologyPick / vendor contacts are optional — accuracy of architecture over sales
+- technologyPick / vendor contacts are optional: accuracy of architecture over sales
 
 Return JSON:
 {
@@ -363,15 +365,15 @@ Parent: ${parent.label}
 Parent overview: ${parent.detail.overview}
 Parent purpose: ${parent.detail.purpose}
 Parent node ID: ${parent.id}
-${parentPick ? `Parent technology: ${parentPick.product} by ${parentPick.vendor.name} — children must decompose how this product is deployed in production` : ""}
+${parentPick ? `Parent technology: ${parentPick.product} by ${parentPick.vendor.name}: children must decompose how this product is deployed in production` : ""}
 Sibling domains: ${siblingLabels.join(", ")}
 
 CRITICAL EXPAND RULES:
 - Return ONLY new child nodes (depth ${parent.depth + 1}) with parentId "${parent.id}"
-- Each child is a deployable unit (cluster, connector, dashboard tier, security boundary) — NOT another vague domain
+- Each child is a deployable unit (cluster, connector, dashboard tier, security boundary): NOT another vague domain
 - If parent is Data Platform/Historian: children MUST decompose the historian deployment (ingest connector, cluster, retention, query layer, dashboards)
 - Each child needs exactly ONE technologyPick with real vendor contacts from web search
-- integrations[] must connect children to each other AND to sibling domains — include setupSteps, networkNote, whoSetsThisUp on every integration
+- integrations[] must connect children to each other AND to sibling domains: include setupSteps, networkNote, whoSetsThisUp on every integration
 
 Return JSON:
 {
@@ -461,7 +463,7 @@ Return JSON:
 }
 
 Rules:
-- Pick exactly ONE replacement product — a real, commercially available solution found via web search
+- Pick exactly ONE replacement product: a real, commercially available solution found via web search
 - Must be different from the rejected product and all rejectedProducts
 - Address the user's stated reason directly in the role and summary
 - Include real vendor contact information verified from the vendor's website`;
@@ -506,7 +508,7 @@ Return JSON:
   "body": "Full email body with greeting, 2-3 short paragraphs explaining the project and why we need their product, clear ask for a call/demo, sign-off with sender name. ${profile.calendlyUrl ? "Include the Calendly link naturally for scheduling." : "Ask them to suggest times for a call."}"
 }
 
-Tone: professional, direct, ready to send. No placeholders like [Your Name] — use actual sender info.`;
+Tone: professional, direct, ready to send. No placeholders like [Your Name]: use actual sender info.`;
 }
 
 export function buildResearchTechnologyPrompt(
@@ -516,7 +518,7 @@ export function buildResearchTechnologyPrompt(
 ): string {
   const requirements = buildRequirementsBlock(ctx);
 
-  return `Research and select ONE specific commercial product for this architecture component. The user will contact the vendor directly — you must provide real outreach info.
+  return `Research and select ONE specific commercial product for this architecture component. The user will contact the vendor directly: you must provide real outreach info.
 
 ${requirements}
 
@@ -554,8 +556,8 @@ Return JSON:
 }
 
 RULES:
-- Product must be a real, purchasable commercial solution verified via web search — NOT a protocol, category, or open-source project name alone
-- contactEmail or contactPage is REQUIRED — search the vendor site; user must be able to click Reach Out
+- Product must be a real, purchasable commercial solution verified via web search: NOT a protocol, category, or open-source project name alone
+- contactEmail or contactPage is REQUIRED: search the vendor site; user must be able to click Reach Out
 - Tailor to ${ctx.industry ?? "their industry"}, ${ctx.scale ?? "their scale"}, ${ctx.deployment ?? "their deployment"}
 - If they have existing systems (${ctx.existingSystems ?? "unknown"}), prefer compatible vendors
 - Use the latest ${CURRENT_YEAR} product version you find on the vendor site`;

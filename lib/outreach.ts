@@ -50,7 +50,7 @@ export function formatMailtoBody(
     `I'm evaluating an industrial software architecture for: ${idea}.`,
     "",
     `Stacky selected your solution for the "${nodeLabel}" component`,
-    product ? `— specifically ${product}.` : ".",
+    product ? `:  specifically ${product}.` : ".",
     role ? `Intended role: ${role}` : "",
     "",
     "Could we schedule a brief call to discuss licensing and deployment for our rollout?",

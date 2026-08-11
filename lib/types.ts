@@ -27,7 +27,7 @@ export type Vendor = {
   region?: string;
 };
 
-/** A specific product the user can procure — tied to a vendor with outreach contacts */
+/** A specific product the user can procure. tied to a vendor with outreach contacts */
 export type TechnologyPick = {
   name: string;
   product: string;
@@ -57,7 +57,7 @@ export type Integration = {
   ports?: string;
   /** Traffic direction across the security boundary */
   direction?: "inbound" | "outbound" | "bidirectional";
-  /** Who typically configures this — SI, internal OT team, vendor PS */
+  /** Who typically configures this. SI, internal OT team, vendor PS */
   whoSetsThisUp?: string;
   /** Rough sizing e.g. "2-3 days with SI" */
   estimatedEffort?: string;
@@ -115,7 +115,7 @@ export type ProjectContext = {
   intakeMode?: IntakeMode;
   /** Selected historian planning focus (tdengine, pi-system, canary, …) */
   historianFocus?: string;
-  /** Day-to-day operational scenario — asked first in guided mode */
+  /** Day-to-day operational scenario. asked first in guided mode */
   scenario?: string;
   /** Accumulated free-form notes in natural language mode */
   naturalNotes?: string;
@@ -138,7 +138,7 @@ export type NodeDetail = {
   overview: string;
   purpose: string;
   technologies: string[];
-  /** The one product Stacky selected for this component — no alternatives */
+  /** The one product Stacky selected for this component. no alternatives */
   technologyPick?: TechnologyPick;
   tradeoffs: Tradeoff[];
   risks: string[];
@@ -159,7 +159,7 @@ export type StackyNode = {
   expanded: boolean;
   position: { x: number; y: number };
   detail: NodeDetail;
-  /** Diagram role — zone, firewall, server component, etc. */
+  /** Diagram role. zone, firewall, server component, etc. */
   kind?: NodeKind;
   /** Security / network zone label, e.g. "Control Network", "DMZ", "Corporate" */
   zone?: string;

@@ -25,7 +25,7 @@ export function HistorianPlanning({
       </div>
       <p className="mb-4 text-center text-sm text-muted-foreground">
         {caption ??
-          "Pick a major historian to scaffold a deployable architecture — or describe your stack in natural language above."}
+          "Pick a major historian to scaffold a deployable architecture, or describe your stack in natural language above."}
       </p>
       <div className="grid gap-2 sm:grid-cols-2">
         {HISTORIANS.map((h) => (

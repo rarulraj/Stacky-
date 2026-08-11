@@ -129,7 +129,7 @@ export function exportBlueprintMarkdown(
   function renderTree(node: StackyNode, depth: number) {
     const indent = "  ".repeat(depth);
     const pick = node.detail.technologyPick?.product;
-    md += `${indent}- **${node.label}**${pick ? ` — _${pick}_` : ""}\n`;
+    md += `${indent}- **${node.label}**${pick ? `: _${pick}_` : ""}\n`;
     nodes
       .filter((n) => n.parentId === node.id)
       .forEach((child) => renderTree(child, depth + 1));

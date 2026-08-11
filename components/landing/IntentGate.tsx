@@ -45,7 +45,7 @@ export function IntentGate({ value, onChange, className }: IntentGateProps) {
   return (
     <section className={cn("w-full", className)}>
       <p className="mb-1 text-center text-xs font-medium tracking-wide text-muted-foreground uppercase">
-        First — what do you need?
+        First, what do you need?
       </p>
       <p className="mb-4 text-center text-sm text-muted-foreground">
         Stacky works for engineering diagrams and for commercial quotes. Pick

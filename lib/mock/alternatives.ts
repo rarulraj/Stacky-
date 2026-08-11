@@ -12,7 +12,7 @@ const ALTERNATIVES: Record<string, TechnologyPick> = {
     vendor: {
       name: "Timescale",
       website: "https://www.timescale.com",
-      description: "Time-series on PostgreSQL — familiar SQL, strong ecosystem",
+      description: "Time-series on PostgreSQL: familiar SQL, strong ecosystem",
       category: "Software",
       contactEmail: "sales@timescale.com",
       contactPage: "https://www.timescale.com/contact",
@@ -47,7 +47,7 @@ const ALTERNATIVES: Record<string, TechnologyPick> = {
   grafana: {
     name: "Datadog",
     product: "Datadog Industrial Monitoring",
-    role: "Unified observability — metrics, logs, traces, and alerting",
+    role: "Unified observability: metrics, logs, traces, and alerting",
     connectsTo: "TSDB / Kafka → on-call routing",
     vendor: {
       name: "Datadog",
@@ -79,7 +79,7 @@ const ALTERNATIVES: Record<string, TechnologyPick> = {
   hashicorp: {
     name: "Pulumi",
     product: "Pulumi Cloud",
-    role: "Infrastructure-as-code using TypeScript/Python — multi-cloud",
+    role: "Infrastructure-as-code using TypeScript/Python: multi-cloud",
     connectsTo: "AWS / Azure / on-prem K8s",
     vendor: {
       name: "Pulumi",

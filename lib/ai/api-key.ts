@@ -1,4 +1,4 @@
-/** Client no longer carries API keys — server uses OPENAI_API_KEY from env. */
+/** Client no longer carries API keys. server uses OPENAI_API_KEY from env. */
 export const API_KEY_CHANGE_EVENT = "stacky-api-key-change";
 
 export function getStoredApiKey(): string | null {
@@ -6,7 +6,7 @@ export function getStoredApiKey(): string | null {
 }
 
 export function setStoredApiKey(_key: string): void {
-  // no-op — keys are not stored in the browser
+  // no-op. keys are not stored in the browser
 }
 
 export function clearStoredApiKey(): void {

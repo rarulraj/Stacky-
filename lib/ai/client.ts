@@ -65,7 +65,7 @@ export async function fetchGenerateGraph(
       body: JSON.stringify({ context: ctx }),
     });
     if (!res.ok) {
-      // Template mode / transient LLM failures — still produce a usable blueprint
+      // Template mode / transient LLM failures. still produce a usable blueprint
       return mockGraphResult(ctx);
     }
     return res.json();

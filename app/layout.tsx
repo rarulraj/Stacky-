@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stacky — Industrial Software Architect",
+  title: "Stacky | Industrial Software Architect",
   description:
-    "Architect industrial software blueprints — OT platforms, field systems, SCADA, fleet, construction, energy, and more.",
+    "Architect industrial software blueprints for OT platforms, field systems, SCADA, fleet, construction, energy, and more.",
 };
 
 export default function RootLayout({

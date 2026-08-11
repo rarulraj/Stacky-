@@ -8,7 +8,7 @@ import type {
 
 export function emptyNodeDetail(label: string): NodeDetail {
   return {
-    overview: `${label} — describe this component’s role in the architecture.`,
+    overview: `${label}: describe this component’s role in the architecture.`,
     purpose: `Supports the parent system as ${label}.`,
     technologies: [],
     tradeoffs: [],

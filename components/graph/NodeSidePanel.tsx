@@ -151,7 +151,7 @@ export function NodeSidePanel({
                     title={
                       context.intent === "architecture"
                         ? "Technology"
-                        : "Your Stack — Ready to Deploy"
+                        : "Your stack, ready to deploy"
                     }
                     icon={Package}
                   >

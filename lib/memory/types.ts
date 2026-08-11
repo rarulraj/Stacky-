@@ -8,7 +8,7 @@ import type {
   StackyNode,
 } from "@/lib/types";
 
-/** Server-side state keyed by email — not an account, just a memory locker */
+/** Server-side state keyed by email. not an account, just a memory locker */
 export type EmailMemory = {
   email: string;
   updatedAt: string;

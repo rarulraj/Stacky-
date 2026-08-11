@@ -58,7 +58,7 @@ export function BuildSidebar({
           />
           <p className="mt-2 text-[10px] text-muted-foreground">
             {intakeMode === "natural"
-              ? "Natural language — no structured prompts"
+              ? "Natural language: no structured prompts"
               : "Scenario-first guided intake"}
           </p>
         </div>
@@ -73,7 +73,7 @@ export function BuildSidebar({
         )}
         {intakeMode === "natural" && context.naturalNotes && (
           <p className="mt-4 text-xs text-muted-foreground">
-            Free-form notes captured — add more in chat, then build
+            Free-form notes captured: add more in chat, then build
           </p>
         )}
       </div>

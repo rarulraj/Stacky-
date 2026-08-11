@@ -6,7 +6,7 @@ import { useStackyStore } from "@/lib/store";
 
 /**
  * Debounced sync of the current session into email-keyed server memory.
- * No browser persistence — only the email locker on the server.
+ * No browser persistence: only the email locker on the server.
  */
 export function MemorySync() {
   const userEmail = useStackyStore((s) => s.userEmail);

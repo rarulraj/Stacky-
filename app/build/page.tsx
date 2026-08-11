@@ -98,8 +98,8 @@ export default function BuildPage() {
           await fetchGenerateGraph(ctx);
         setGeneratingStatus(
           source === "llm"
-            ? "Blueprint ready — vendors loaded…"
-            : "Blueprint ready — template mode…"
+            ? "Blueprint ready. Vendors loaded…"
+            : "Blueprint ready (template mode)…"
         );
         await new Promise((r) => setTimeout(r, 600));
         setGraphData(nodes, integrations, implementationPartners);
@@ -234,7 +234,7 @@ export default function BuildPage() {
       id: crypto.randomUUID(),
       role: "stacky",
       content:
-        "Got it — I've added that to your project context. Keep going with more detail, or hit **Build blueprint** when you're ready.",
+        "Got it. I've added that to your project context. Keep going with more detail, or hit **Build blueprint** when you're ready.",
     });
     setStreamDone(true);
   };
@@ -366,7 +366,7 @@ export default function BuildPage() {
                       onClick={switchToNatural}
                       className="text-xs text-muted-foreground underline-offset-2 hover:text-foreground hover:underline"
                     >
-                      Prefer natural language — skip questions
+                      Prefer natural language? Skip questions
                     </button>
                     <Button
                       variant="outline"

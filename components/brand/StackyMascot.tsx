@@ -32,11 +32,11 @@ export function StackyMascot({
       <line x1="86" y1="56" x2="86" y2="84" stroke="#f97316" strokeWidth="0.8" opacity="0.3" />
       <line x1="94" y1="56" x2="94" y2="84" stroke="#f97316" strokeWidth="0.8" opacity="0.3" />
 
-      {/* Bottom block — safety orange */}
+      {/* Bottom block: safety orange */}
       <rect x="28" y="72" width="44" height="22" rx="4" fill="#ea580c" stroke="#fb923c" strokeWidth="1.5" />
-      {/* Middle block — amber */}
+      {/* Middle block: amber */}
       <rect x="32" y="52" width="40" height="20" rx="4" fill="#f97316" stroke="#fdba74" strokeWidth="1.5" />
-      {/* Top block — hardhat yellow */}
+      {/* Top block: hardhat yellow */}
       <rect x="36" y="34" width="36" height="18" rx="4" fill="#f59e0b" stroke="#fcd34d" strokeWidth="1.5" />
 
       {/* Face */}

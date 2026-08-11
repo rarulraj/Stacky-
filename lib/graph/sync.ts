@@ -116,7 +116,7 @@ function mergeIntegrations(
   return Array.from(byId.values());
 }
 
-/** Sync after expand/collapse — single atomic graph state */
+/** Sync after expand/collapse. single atomic graph state */
 export function syncGraphState(
   nodes: StackyNode[],
   integrations?: Integration[]

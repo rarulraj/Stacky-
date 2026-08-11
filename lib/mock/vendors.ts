@@ -20,7 +20,7 @@ export const VENDORS = {
   kepware: vendor({
     name: "PTC (Kepware)",
     website: "https://www.ptc.com/en/products/kepware",
-    description: "Industrial connectivity suite — 150+ drivers for OPC UA, Modbus, PLCs",
+    description: "Industrial connectivity suite: 150+ drivers for OPC UA, Modbus, PLCs",
     category: "Software",
     contactPage: "https://www.ptc.com/en/contact",
     contactPhone: "+1-800-477-6832",
@@ -40,7 +40,7 @@ export const VENDORS = {
   grafana: vendor({
     name: "Grafana Labs",
     website: "https://grafana.com",
-    description: "Observability stack — dashboards, alerting, and Grafana Cloud",
+    description: "Observability stack: dashboards, alerting, and Grafana Cloud",
     category: "Software",
     contactPage: "https://grafana.com/contact/",
     contactEmail: "hello@grafana.com",
@@ -60,7 +60,7 @@ export const VENDORS = {
   aws: vendor({
     name: "Amazon Web Services",
     website: "https://aws.amazon.com",
-    description: "Cloud infrastructure — IoT Core, MSK, S3, EKS for hybrid deployments",
+    description: "Cloud infrastructure: IoT Core, MSK, S3, EKS for hybrid deployments",
     category: "Cloud",
     contactPage: "https://aws.amazon.com/contact-us/",
     contactPhone: "+1-206-266-4064",
@@ -70,7 +70,7 @@ export const VENDORS = {
   claroty: vendor({
     name: "Claroty",
     website: "https://www.claroty.com",
-    description: "OT/ICS cybersecurity — asset discovery, segmentation, threat detection",
+    description: "OT/ICS cybersecurity: asset discovery, segmentation, threat detection",
     category: "Security",
     contactPage: "https://www.claroty.com/contact",
     contactEmail: "info@claroty.com",
@@ -80,7 +80,7 @@ export const VENDORS = {
   siemens: vendor({
     name: "Siemens Digital Industries",
     website: "https://www.siemens.com/industrial-automation",
-    description: "PLC, SCADA, and industrial automation — S7-1500, WinCC, MindSphere",
+    description: "PLC, SCADA, and industrial automation: S7-1500, WinCC, MindSphere",
     category: "Hardware",
     contactPage: "https://www.siemens.com/global/en/company/about/contact.html",
     contactName: "Regional Sales",
@@ -128,13 +128,13 @@ export const VENDORS = {
   }),
 };
 
-/** One definitive product pick per domain — Stacky decides, no alternatives */
+/** One definitive product pick per domain: Stacky decides, no alternatives */
 export const DOMAIN_TECH_PICK: Record<string, TechnologyPick> = {
   Edge: {
     name: "PTC (Kepware)",
     product: "KEPServerEX",
     version: "6.16+",
-    role: "Plant-edge connectivity hub — OPC UA, Modbus, and PLC aggregation",
+    role: "Plant-edge connectivity hub: OPC UA, Modbus, and PLC aggregation",
     connectsTo: "HiveMQ Cloud (MQTT publish)",
     deploymentNote: "One instance per site on DMZ VLAN",
     vendor: VENDORS.kepware,

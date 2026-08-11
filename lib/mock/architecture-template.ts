@@ -59,7 +59,7 @@ function edge(
   };
 }
 
-/** High-fidelity fallback when LLM is unavailable — multi-zone OT historian pattern */
+/** High-fidelity fallback when LLM is unavailable: multi-zone OT historian pattern */
 export function generateArchitectureTemplate(ctx: ProjectContext): {
   nodes: StackyNode[];
   integrations: Integration[];
@@ -189,13 +189,13 @@ export function generateArchitectureTemplate(ctx: ProjectContext): {
 
   const integrations: Integration[] = [
     edge("ds-opc", "fw-plant", "OPC tags", "4840", "OPC UA", "outbound"),
-    edge("fw-plant", "sw-plant", "Plant LAN", "—", "Ethernet", "bidirectional"),
+    edge("fw-plant", "sw-plant", "Plant LAN", "-", "Ethernet", "bidirectional"),
     edge("sw-plant", "fw-dmz-in", "To DMZ", "6041, 6030", "TCP", "outbound"),
     edge("fw-dmz-in", "agent-taosx", "Agent ingest", "6041", "taosX", "inbound"),
     edge("agent-taosx", "fw-dmz-out", "Site uplink", "443, 6041", "TLS", "outbound"),
     edge("fw-dmz-out", "mpls", "MPLS handoff", "443, 6041", "IP", "outbound"),
     edge("mpls", "fw-central", "Central ingress", "443, 6041", "IP", "inbound"),
-    edge("fw-central", "sw-central", "Server room", "—", "Ethernet", "bidirectional"),
+    edge("fw-central", "sw-central", "Server room", "-", "Ethernet", "bidirectional"),
     edge("sw-central", "td-tsdb", "Write path", "6030, 6041", "TDengine", "outbound"),
     edge("sw-central", "td-idmp", "IDMP API", "443, 6041", "HTTPS", "bidirectional"),
     edge("td-tsdb", "td-backup", "Replication", "6030", "TDengine", "outbound"),

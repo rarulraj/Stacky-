@@ -95,8 +95,8 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.15 }}
           className="mb-8 text-center text-lg text-muted-foreground"
         >
-          High-fidelity architecture diagrams and commercial blueprints —
-          everything editable, no account required.
+          High-fidelity architecture diagrams and commercial blueprints.
+          Everything editable, no account required.
         </motion.p>
 
         <motion.div
@@ -123,7 +123,7 @@ export function Hero() {
                     : "Describe the full architecture in your own words"
                   : intakeMode === "guided"
                     ? "Stacky walks through your scenario first, then specs"
-                    : "Skip the forms — describe everything in your own words"}
+                    : "Skip the forms. Describe everything in your own words"}
               </p>
             </motion.div>
 
@@ -191,7 +191,7 @@ export function Hero() {
                   onSelect={(idea, historianId) => submit(idea, historianId)}
                   caption={
                     isArchitecture
-                      ? "Start from a historian pattern — you'll get zones, relays, and clients you can edit by hand."
+                      ? "Start from a historian pattern: you'll get zones, relays, and clients you can edit by hand."
                       : undefined
                   }
                 />
@@ -205,7 +205,7 @@ export function Hero() {
             >
               {(isArchitecture
                 ? [
-                    "PI Server in DMZ — control / DMZ / corporate",
+                    "PI Server in DMZ with control, DMZ, and corporate zones",
                     "Multi-plant taosX agents over MPLS",
                     "Purdue L0–L5 OT/IT segmentation",
                     "Central historian + site OPC UA servers",

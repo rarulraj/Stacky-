@@ -22,7 +22,7 @@ function findTargetNode(
   );
 }
 
-/** Build integration edges from technology picks — no hardcoded mock vendors */
+/** Build integration edges from technology picks. no hardcoded mock vendors */
 export function buildIntegrationsFromNodes(nodes: StackyNode[]): Integration[] {
   const byId = new Map<string, Integration>();
 

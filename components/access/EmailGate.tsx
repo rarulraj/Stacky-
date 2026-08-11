@@ -98,7 +98,7 @@ export function EmailGate({
           <div>
             <h2 className="text-lg font-semibold">Start planning</h2>
             <p className="text-xs text-muted-foreground">
-              No account — work is remembered by email
+              No account. Work is remembered by email
             </p>
           </div>
         </div>
@@ -125,7 +125,7 @@ export function EmailGate({
           <p className="mb-3 text-xs text-emerald-400/90">{memorySummary}</p>
         )}
         <p className="mb-4 text-[11px] leading-relaxed text-muted-foreground">
-          Blueprints and notes save to this email on the server — not in your
+          Blueprints and notes save to this email on the server, not in your
           browser, and not as a username/password account.
         </p>
 

@@ -77,7 +77,7 @@ export const ROOT_DETAILS: Record<string, NodeDetail> = {
     costEstimate: { range: "$40k–$250k", notes: "Annual security operations included" },
     standards: ["IEC 62443", "NIST CSF", "ISO 27001"],
     bestPractices: ["Network segmentation (Purdue model)", "MFA for all remote access", "Regular penetration testing"],
-    notes: "Security is not optional for {industry} — bake it in from day one.",
+    notes: "Security is not optional for {industry}: bake it in from day one.",
     futureRecommendations: ["SOC automation", "AI threat detection", "Supply chain security"],
   }),
   Deployment: detail({
@@ -167,11 +167,11 @@ export const CHILD_DETAILS: Record<string, NodeDetail> = {
     costEstimate: { range: "$2k–$15k", notes: "Gateway hardware per segment" },
     standards: ["Modbus TCP/RTU"],
     bestPractices: ["Document all register maps", "Isolate on dedicated VLAN"],
-    notes: "Bridge legacy assets — plan migration to OPC UA.",
+    notes: "Bridge legacy assets: plan migration to OPC UA.",
     futureRecommendations: ["Protocol conversion at edge"],
   }),
   PLCs: detail({
-    overview: "Programmable Logic Controllers — the brains of industrial automation.",
+    overview: "Programmable Logic Controllers: the brains of industrial automation.",
     purpose: "Source of truth for machine state, setpoints, and interlocks.",
     technologies: ["Siemens S7", "Allen-Bradley ControlLogix", "Mitsubishi iQ-R"],
     tradeoffs: [{ pro: "Deterministic control", con: "Vendor lock-in" }],

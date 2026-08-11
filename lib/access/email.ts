@@ -1,4 +1,4 @@
-/** Session-only email helpers — nothing written to the browser. */
+/** Session-only email helpers. nothing written to the browser. */
 
 export const EMAIL_CHANGE_EVENT = "stacky-email-change";
 

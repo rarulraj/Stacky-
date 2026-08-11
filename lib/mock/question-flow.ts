@@ -1,11 +1,11 @@
 import type { ProjectContext, Question } from "@/lib/types";
 import { hasDocumentContext } from "@/lib/files/document-context";
 
-/** Scenario-first — people relate to stories before specs */
+/** Scenario-first: people relate to stories before specs */
 const QUESTIONS: Question[] = [
   {
     id: "scenario",
-    text: "Walk me through the scenario — what happens day-to-day that this system needs to support?",
+    text: "Walk me through the scenario: what happens day-to-day that this system needs to support?",
     placeholder:
       "e.g. Operators at 3 plants monitor live OEE dashboards; alarms route to on-call when…",
     chips: [
@@ -106,7 +106,7 @@ export function getAnsweredFields(ctx: ProjectContext): string[] {
 }
 
 export const NATURAL_MODE_INTRO =
-  "Tell me everything in your own words — the scenario, who's involved, scale, constraints, and existing systems. Add as much detail as you like, then hit **Build blueprint** when you're ready. No forms required.";
+  "Tell me everything in your own words: the scenario, who's involved, scale, constraints, and existing systems. Add as much detail as you like, then hit **Build blueprint** when you're ready. No forms required.";
 
 export const GUIDED_MODE_INTRO =
-  "Let's start with the scenario — I'll ask what happens day-to-day before we get into specs. Prefer to skip the questions? Switch to **natural language** anytime.";
+  "Let's start with the scenario: I'll ask what happens day-to-day before we get into specs. Prefer to skip the questions? Switch to **natural language** anytime.";

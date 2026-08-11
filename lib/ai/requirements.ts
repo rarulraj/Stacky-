@@ -133,7 +133,7 @@ export function extractProjectRequirements(
 export function buildRequirementsBlock(ctx: ProjectContext): string {
   const req = extractProjectRequirements(ctx);
   const lines: string[] = [
-    "USER REQUIREMENTS (HIGHEST PRIORITY — override generic defaults):",
+    "USER REQUIREMENTS (HIGHEST PRIORITY: override generic defaults):",
   ];
 
   if (req.mandatoryProducts.length > 0) {
@@ -148,11 +148,11 @@ export function buildRequirementsBlock(ctx: ProjectContext): string {
 
   if (req.wantsHistorian || req.wantsIndustrialAnalytics) {
     lines.push(
-      "- User wants an IA-level industrial data historian — architecture MUST include: Edge/OT ingest → stream/bus → time-series store → analytics/dashboards → alerting"
+      "- User wants an IA-level industrial data historian: architecture MUST include: Edge/OT ingest → stream/bus → time-series store → analytics/dashboards → alerting"
     );
     if (!req.wantsTDengine) {
       lines.push(
-        "- Pick the BEST FIT commercial historian for their industry, scale, and deployment via web search (e.g. TDengine, AVEVA PI, Timescale, InfluxDB Enterprise, Canary Labs) — do NOT default to one vendor"
+        "- Pick the BEST FIT commercial historian for their industry, scale, and deployment via web search (e.g. TDengine, AVEVA PI, Timescale, InfluxDB Enterprise, Canary Labs): do NOT default to one vendor"
       );
     }
     lines.push(
@@ -162,16 +162,16 @@ export function buildRequirementsBlock(ctx: ProjectContext): string {
 
   if (ctx.historianFocus && req.mandatoryProducts.length > 0) {
     lines.push(
-      `- User selected historian planning focus "${ctx.historianFocus}" — use ${req.mandatoryProducts[0]} for the historian/time-series layer`
+      `- User selected historian planning focus "${ctx.historianFocus}": use ${req.mandatoryProducts[0]} for the historian/time-series layer`
     );
   } else if (req.wantsTDengine) {
     lines.push(
-      "- User explicitly asked for TDengine — use TDengine Enterprise for the historian/time-series layer"
+      "- User explicitly asked for TDengine: use TDengine Enterprise for the historian/time-series layer"
     );
   }
 
   lines.push(
-    `- Architecture pattern: ${req.architecturePattern} — model real production deployments, not generic boxes`
+    `- Architecture pattern: ${req.architecturePattern}: model real production deployments, not generic boxes`
   );
 
   lines.push(

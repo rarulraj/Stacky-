@@ -203,7 +203,7 @@ function buildComponentsHtml(nodes: StackyNode[]): string {
         ${
           pick
             ? `<div class="pick-box">
-              <p><strong>Deploy:</strong> ${escapeHtml(pick.product)}${pick.version ? ` v${escapeHtml(pick.version)}` : ""} — ${escapeHtml(pick.vendor.name)}</p>
+              <p><strong>Deploy:</strong> ${escapeHtml(pick.product)}${pick.version ? ` v${escapeHtml(pick.version)}` : ""}: ${escapeHtml(pick.vendor.name)}</p>
               <p>${escapeHtml(pick.role)}</p>
               ${pick.connectsTo ? `<p><strong>Connects to:</strong> ${escapeHtml(pick.connectsTo)}</p>` : ""}
               ${pick.deploymentNote ? `<p><strong>Deployment:</strong> ${escapeHtml(pick.deploymentNote)}</p>` : ""}
@@ -212,7 +212,7 @@ function buildComponentsHtml(nodes: StackyNode[]): string {
         }
         ${
           node.detail.costEstimate.range
-            ? `<p class="cost"><strong>Cost:</strong> ${escapeHtml(node.detail.costEstimate.range)} — ${escapeHtml(node.detail.costEstimate.notes)}</p>`
+            ? `<p class="cost"><strong>Cost:</strong> ${escapeHtml(node.detail.costEstimate.range)}: ${escapeHtml(node.detail.costEstimate.notes)}</p>`
             : ""
         }
         ${practices ? `<div><strong>Best practices</strong><ul>${practices}</ul></div>` : ""}
@@ -251,7 +251,7 @@ export function buildBlueprintHtml(
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${escapeHtml(title)} — Stacky Blueprint</title>
+  <title>${escapeHtml(title)}: Stacky Blueprint</title>
   <style>
     :root {
       --bg: #0c0a09;
