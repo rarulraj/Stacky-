@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { StackyMascot } from "@/components/brand/StackyMascot";
-import { ApiKeyDevBanner, ApiKeySettings } from "@/components/settings/ApiKeySettings";
-import { API_KEY_CHANGE_EVENT } from "@/lib/ai/api-key";
 import { checkLLMStatus } from "@/lib/ai/client";
 import { useStackyStore } from "@/lib/store";
 
@@ -13,10 +11,7 @@ export function Nav() {
   const userEmail = useStackyStore((s) => s.userEmail);
 
   useEffect(() => {
-    const refresh = () => checkLLMStatus().then((r) => setAiActive(r.configured));
-    refresh();
-    window.addEventListener(API_KEY_CHANGE_EVENT, refresh);
-    return () => window.removeEventListener(API_KEY_CHANGE_EVENT, refresh);
+    void checkLLMStatus().then((r) => setAiActive(r.configured));
   }, []);
 
   return (
@@ -37,10 +32,8 @@ export function Nav() {
               {userEmail}
             </span>
           )}
-          <ApiKeySettings />
         </div>
       </div>
-      <ApiKeyDevBanner embedded />
     </header>
   );
 }

@@ -11,7 +11,6 @@ import {
   Users,
 } from "lucide-react";
 import { ExportMenu } from "@/components/graph/ExportMenu";
-import { ApiKeyDevBanner, ApiKeySettings } from "@/components/settings/ApiKeySettings";
 import { StackyMascot } from "@/components/brand/StackyMascot";
 import { Button } from "@/components/ui/button";
 import { fetchGenerateGraph } from "@/lib/ai/client";
@@ -145,7 +144,6 @@ export function GraphToolbar() {
             </Button>
           )}
           <ExportMenu />
-          <ApiKeySettings />
           <Button variant="ghost" size="sm" onClick={handleNewProject}>
             <RotateCcw className="size-3.5" />
             <span className="hidden sm:inline">New</span>
@@ -157,7 +155,6 @@ export function GraphToolbar() {
           {toast}
         </div>
       )}
-      <ApiKeyDevBanner embedded />
     </header>
   );
 }
