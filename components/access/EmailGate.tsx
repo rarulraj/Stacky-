@@ -125,7 +125,9 @@ export function EmailGate({
   );
 }
 
-/** Returns stored email or null — use before navigating into the product */
+/** Session email only (memory) — never browser storage */
 export function ensureUserEmail(): string | null {
-  return getStoredUserEmail();
+  return (
+    getStoredUserEmail() ?? useStackyStore.getState().userEmail ?? null
+  );
 }

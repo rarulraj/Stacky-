@@ -217,8 +217,6 @@ function ApiKeyDialogContent({
   );
 }
 
-const BANNER_DISMISS_KEY = "stacky-api-key-banner-dismissed";
-
 export function ApiKeyDevBanner({ embedded = false }: { embedded?: boolean }) {
   if (!showDevApiKeyUi()) return null;
 
@@ -228,7 +226,7 @@ export function ApiKeyDevBanner({ embedded = false }: { embedded?: boolean }) {
   const [dismissed, setDismissed] = useState(true);
 
   useEffect(() => {
-    setDismissed(sessionStorage.getItem(BANNER_DISMISS_KEY) === "1");
+    setDismissed(false);
     setKey(getStoredApiKey() ?? "");
   }, []);
 
@@ -249,7 +247,6 @@ export function ApiKeyDevBanner({ embedded = false }: { embedded?: boolean }) {
   };
 
   const handleDismiss = () => {
-    sessionStorage.setItem(BANNER_DISMISS_KEY, "1");
     setDismissed(true);
   };
 

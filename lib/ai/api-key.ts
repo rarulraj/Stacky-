@@ -1,5 +1,7 @@
-const STORAGE_KEY = "stacky-openai-api-key";
+/** Optional browser-dev override — memory only, never localStorage. */
 export const API_KEY_CHANGE_EVENT = "stacky-api-key-change";
+
+let memoryApiKey: string | null = null;
 
 function notifyApiKeyChange() {
   if (typeof window === "undefined") return;
@@ -7,23 +9,16 @@ function notifyApiKeyChange() {
 }
 
 export function getStoredApiKey(): string | null {
-  if (typeof window === "undefined") return null;
-  return localStorage.getItem(STORAGE_KEY);
+  return memoryApiKey;
 }
 
 export function setStoredApiKey(key: string): void {
-  if (typeof window === "undefined") return;
-  if (key.trim()) {
-    localStorage.setItem(STORAGE_KEY, key.trim());
-  } else {
-    localStorage.removeItem(STORAGE_KEY);
-  }
+  memoryApiKey = key.trim() || null;
   notifyApiKeyChange();
 }
 
 export function clearStoredApiKey(): void {
-  if (typeof window === "undefined") return;
-  localStorage.removeItem(STORAGE_KEY);
+  memoryApiKey = null;
   notifyApiKeyChange();
 }
 

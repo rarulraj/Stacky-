@@ -7,11 +7,9 @@ import {
   LayoutGrid,
   Plus,
   RotateCcw,
-  Save,
   Sparkles,
   Users,
 } from "lucide-react";
-import { DeploymentsPanel } from "@/components/deployments/DeploymentsPanel";
 import { ExportMenu } from "@/components/graph/ExportMenu";
 import { ApiKeyDevBanner, ApiKeySettings } from "@/components/settings/ApiKeySettings";
 import { StackyMascot } from "@/components/brand/StackyMascot";
@@ -28,8 +26,6 @@ export function GraphToolbar() {
   const resetProject = useStackyStore((s) => s.resetProject);
   const setOutreachOpen = useStackyStore((s) => s.setOutreachOpen);
   const outreachOpen = useStackyStore((s) => s.outreachOpen);
-  const saveDeployment = useStackyStore((s) => s.saveDeployment);
-  const updateActiveDeployment = useStackyStore((s) => s.updateActiveDeployment);
   const setGraphData = useStackyStore((s) => s.setGraphData);
   const addChildNode = useStackyStore((s) => s.addChildNode);
   const relayoutGraph = useStackyStore((s) => s.relayoutGraph);
@@ -46,12 +42,6 @@ export function GraphToolbar() {
     router.push("/");
   };
 
-  const handleSave = () => {
-    saveDeployment();
-    updateActiveDeployment();
-    showToast("Deployment saved");
-  };
-
   const handleAddChild = () => {
     const parentId =
       selectedNodeId ?? nodes.find((n) => n.depth === 0)?.id ?? null;
@@ -59,7 +49,6 @@ export function GraphToolbar() {
     const label = window.prompt("Component name", "New component");
     if (!label?.trim()) return;
     addChildNode(parentId, label.trim());
-    updateActiveDeployment();
   };
 
   const handleRebuild = async () => {
@@ -75,7 +64,6 @@ export function GraphToolbar() {
       const { nodes: next, integrations, implementationPartners } =
         await fetchGenerateGraph(context);
       setGraphData(next, integrations, implementationPartners);
-      saveDeployment();
       showToast("Architecture rebuilt");
     } catch (err) {
       showToast(err instanceof Error ? err.message : "Rebuild failed");
@@ -128,10 +116,7 @@ export function GraphToolbar() {
             variant="ghost"
             size="sm"
             className="gap-1.5"
-            onClick={() => {
-              relayoutGraph();
-              updateActiveDeployment();
-            }}
+            onClick={() => relayoutGraph()}
           >
             <LayoutGrid className="size-3.5" />
             <span className="hidden sm:inline">Layout</span>
@@ -148,15 +133,6 @@ export function GraphToolbar() {
               {rebuilding ? "Rebuilding…" : "Rebuild"}
             </span>
           </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="gap-1.5"
-            onClick={handleSave}
-          >
-            <Save className="size-3.5" />
-            <span className="hidden sm:inline">Save</span>
-          </Button>
           {context.intent !== "architecture" && (
             <Button
               variant={outreachOpen ? "secondary" : "ghost"}
@@ -170,7 +146,6 @@ export function GraphToolbar() {
           )}
           <ExportMenu />
           <ApiKeySettings />
-          <DeploymentsPanel />
           <Button variant="ghost" size="sm" onClick={handleNewProject}>
             <RotateCcw className="size-3.5" />
             <span className="hidden sm:inline">New</span>

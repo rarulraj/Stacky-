@@ -1,7 +1,6 @@
 "use client";
 
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 import {
   collectDescendantIds,
   createChildNode,
@@ -101,9 +100,7 @@ type StackyState = {
 
 const initialContext: ProjectContext = { idea: "" };
 
-export const useStackyStore = create<StackyState>()(
-  persist(
-    (set, get) => ({
+export const useStackyStore = create<StackyState>()((set, get) => ({
       userEmail: null,
       context: initialContext,
       messages: [],
@@ -490,35 +487,4 @@ export const useStackyStore = create<StackyState>()(
           ),
         });
       },
-    }),
-    {
-      name: "stacky-storage",
-      partialize: (state) => ({
-        userEmail: state.userEmail,
-        context: {
-          ...state.context,
-          attachments: state.context.attachments?.map((a) =>
-            a.type === "image" ? { ...a, content: "" } : a
-          ),
-        },
-        messages: state.messages,
-        nodes: state.nodes,
-        integrations: state.integrations,
-        implementationPartners: state.implementationPartners,
-        outreachProfile: state.outreachProfile,
-        deployments: state.deployments.map((d) => ({
-          ...d,
-          integrations: d.integrations ?? [],
-          implementationPartners: d.implementationPartners ?? [],
-          context: {
-            ...d.context,
-            attachments: d.context.attachments?.map((a) =>
-              a.type === "image" ? { ...a, content: "" } : a
-            ),
-          },
-        })),
-        activeDeploymentId: state.activeDeploymentId,
-      }),
-    }
-  )
-);
+}));
